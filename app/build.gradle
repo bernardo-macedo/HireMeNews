@@ -27,6 +27,9 @@ dependencies {
     implementation networkLibs
     implementation rxJavaLibs
     implementation otherLibs
+    debugImplementation debugLibs
+    releaseImplementation releaseLibs
+    annotationProcessor annotationProcessorLibs
     testImplementation unitTestLibs
     androidTestImplementation androidTestsLibs
 }
