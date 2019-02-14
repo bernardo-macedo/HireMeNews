@@ -14,9 +14,14 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField 'String', "NEWS_API_KEY", "825001404fa84e509924f1b213a86bec"
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // TODO: CREATE THE RELEASE API KEY ON CI SERVER
+            buildConfigField 'String', "NEWS_API_KEY", "825001404fa84e509924f1b213a86bec"
         }
     }
 }
