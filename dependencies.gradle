@@ -16,6 +16,7 @@ ext {
             glide           : '4.8.0',
             linkPreview     : '1.0.9',
             epoxy           : '3.3.0',
+            firebase        : '16.0.1',
 
             espresso        : '3.1.2-alpha01',
             testRunner      : '1.1.2-alpha01',
@@ -118,6 +119,8 @@ ext {
 
     epoxy = "com.airbnb.android:epoxy:$versions.epoxy"
     epoxyCompiler = "com.airbnb.android:epoxy-processor:$versions.epoxy"
+
+    firebase = "com.google.firebase:firebase-core:$versions.firebase"
 
     supportLibs = androidx.values()
     networkLibs = retrofit.values() + okHttp.values() + moshi.values()
