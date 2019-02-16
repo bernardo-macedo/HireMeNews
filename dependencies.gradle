@@ -17,6 +17,7 @@ ext {
             linkPreview     : '1.0.9',
             epoxy           : '3.3.0',
             firebase        : '16.0.1',
+            crashlytics     : '2.9.9',
 
             espresso        : '3.1.2-alpha01',
             testRunner      : '1.1.2-alpha01',
@@ -31,7 +32,6 @@ ext {
     mockito = [mockito: "org.mockito:mockito-core:$versions.mockito"]
     junit = [junit: "junit:junit:$versions.junit"]
     restMock = [restMock: "com.github.andrzejchm.RESTMock:android:$versions.restMock"]
-
 
 
     androidx = [
@@ -121,11 +121,12 @@ ext {
     epoxyCompiler = "com.airbnb.android:epoxy-processor:$versions.epoxy"
 
     firebase = "com.google.firebase:firebase-core:$versions.firebase"
+    crashlytics = "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics"
 
     supportLibs = androidx.values()
     networkLibs = retrofit.values() + okHttp.values() + moshi.values()
     rxJavaLibs = rxJava.values()
-    otherLibs = [timber, glide, linkPreview, epoxy] + dagger.values()
+    otherLibs = [timber, glide, linkPreview, epoxy, crashlytics] + dagger.values()
 
     debugLibs = onlyDebug.values() + leakCannary
     releaseLibs = onlyRelease.values() + leakCannary
