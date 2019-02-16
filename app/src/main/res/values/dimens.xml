@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="news_source_label_vertical_margin">4dp</dimen>
+    <dimen name="news_source_horizontal_margin">8dp</dimen>
+</resources>

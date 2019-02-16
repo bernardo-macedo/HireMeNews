@@ -99,8 +99,16 @@ ext {
     leakCannary = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
     timber = "com.jakewharton.timber:timber:$versions.timber"
 
-    dagger = "com.google.dagger:dagger:$versions.dagger"
-    daggerCompiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+    dagger = [
+            dagger              : "com.google.dagger:dagger:$versions.dagger",
+            daggerAndroid       : "com.google.dagger:dagger-android:$versions.dagger",
+            daggerAndroidSupport: "com.google.dagger:dagger-android-support:$versions.dagger"
+    ]
+
+    daggerCompiler = [
+            daggerCompiler          : "com.google.dagger:dagger-compiler:$versions.dagger",
+            daggerAndroidCompiler   : "com.google.dagger:dagger-android-processor:$versions.dagger"
+    ]
 
     glide = "com.github.bumptech.glide:glide:$versions.glide"
     glideCompiler = "com.github.bumptech.glide:compiler:$versions.glide"
@@ -114,11 +122,11 @@ ext {
     supportLibs = androidx.values()
     networkLibs = retrofit.values() + okHttp.values() + moshi.values()
     rxJavaLibs = rxJava.values()
-    otherLibs = [timber, dagger, glide, linkPreview, epoxy]
+    otherLibs = [timber, glide, linkPreview, epoxy] + dagger.values()
 
     debugLibs = onlyDebug.values() + leakCannary
     releaseLibs = onlyRelease.values() + leakCannary
-    annotationProcessorLibs = [daggerCompiler, glideCompiler, epoxyCompiler]
+    annotationProcessorLibs = [glideCompiler, epoxyCompiler] + daggerCompiler.values()
 
     unitTestLibs = unitTest.values() + leakCannary
     androidTestsLibs = androidTests.values() + supportLibs
