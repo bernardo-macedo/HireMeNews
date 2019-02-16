@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.bmacedo.hiremenews.models.NewsSource" />
+
+        <import type="android.view.View.OnClickListener" />
+
+        <variable
+            name="source"
+            type="NewsSource" />
+
+        <variable
+            name="onSourceClicked"
+            type="OnClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/news_source_horizontal_margin"
+        android:layout_marginEnd="@dimen/news_source_horizontal_margin"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{onSourceClicked}"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/news_source_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/news_source_label_vertical_margin"
+            android:text="@{source.name}"
+            tools:text="BBC" />
+
+        <TextView
+            android:id="@+id/news_source_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/news_source_label_vertical_margin"
+            android:text="@{source.description}"
+            tools:text="BBC Headlines. News 24/7" />
+
+        <TextView
+            android:id="@+id/news_source_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/news_source_label_vertical_margin"
+            android:layout_marginBottom="@dimen/news_source_label_vertical_margin"
+            android:autoLink="web"
+            android:text="@{source.url}"
+            tools:text="bbc.com" />
+
+    </LinearLayout>
+</layout>

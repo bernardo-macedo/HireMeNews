@@ -18,7 +18,7 @@
                 android:name="io.fabric.ApiKey"
                 android:value="d32adb0fd02fb33e82e96831fe2e834b12dfc580"/>
 
-        <activity android:name=".sources.SourceListActivity">
+        <activity android:name=".app.InitialActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

@@ -1,6 +1,6 @@
 package com.bmacedo.hiremenews.app.injection.modules
 
-import com.bmacedo.hiremenews.sources.SourceListActivity
+import com.bmacedo.hiremenews.app.InitialActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -8,6 +8,6 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityBindings {
 
     @ContributesAndroidInjector
-    abstract fun contributesSourceListActivity(): SourceListActivity
+    abstract fun contributesInitialActivity(): InitialActivity
 
 }
