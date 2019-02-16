@@ -1,7 +1,6 @@
 package com.bmacedo.hiremenews.app.injection.modules
 
-import android.content.Context
-import com.bmacedo.hiremenews.app.analytics.Crashlytics
+import com.bmacedo.hiremenews.app.analytics.CrashlyticsManager
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -11,6 +10,6 @@ class AnalyticsModule {
 
     @Provides
     @Singleton
-    fun providesCrashlytics(context: Context) = Crashlytics(context)
+    fun providesCrashlytics() = CrashlyticsManager()
 
 }

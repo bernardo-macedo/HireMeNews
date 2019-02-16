@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
+import com.bmacedo.hiremenews.app.analytics.CrashMonitor
 import com.bmacedo.hiremenews.app.injection.components.DaggerAppComponent
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -13,6 +14,9 @@ open class HireMeNews : Application(), HasActivityInjector {
 
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Activity>
+
+    @Inject
+    lateinit var crashMonitor: CrashMonitor
 
     override fun activityInjector(): DispatchingAndroidInjector<Activity> = androidInjector
 
@@ -24,12 +28,16 @@ open class HireMeNews : Application(), HasActivityInjector {
     override fun onCreate() {
         super.onCreate()
         initDependencyInjection()
+        initCrashMonitor()
     }
 
-    open fun initDependencyInjection() {
-        DaggerAppComponent
-            .create()
+    private fun initDependencyInjection() {
+        DaggerAppComponent.create()
             .inject(this)
+    }
+
+    private fun initCrashMonitor() {
+        crashMonitor.init()
     }
 
 }

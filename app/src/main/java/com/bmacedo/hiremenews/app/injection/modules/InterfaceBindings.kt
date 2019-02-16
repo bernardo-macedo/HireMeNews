@@ -1,7 +1,7 @@
 package com.bmacedo.hiremenews.app.injection.modules
 
 import com.bmacedo.hiremenews.app.analytics.CrashMonitor
-import com.bmacedo.hiremenews.app.analytics.Crashlytics
+import com.bmacedo.hiremenews.app.analytics.CrashlyticsManager
 import dagger.Binds
 import dagger.Module
 
@@ -9,5 +9,5 @@ import dagger.Module
 abstract class InterfaceBindings {
 
     @Binds
-    abstract fun bindCrashMonitor(crashlytics: Crashlytics): CrashMonitor
+    abstract fun bindCrashMonitor(crashlytics: CrashlyticsManager): CrashMonitor
 }
