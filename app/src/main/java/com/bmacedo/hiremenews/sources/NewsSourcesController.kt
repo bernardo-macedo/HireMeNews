@@ -2,8 +2,7 @@ package com.bmacedo.hiremenews.sources
 
 import androidx.navigation.findNavController
 import com.airbnb.epoxy.EpoxyController
-import com.bmacedo.hiremenews.R
-import com.bmacedo.hiremenews.models.NewsSource
+import com.bmacedo.hiremenews.models.domain.NewsSource
 import com.bmacedo.hiremenews.newsSourceItem
 
 class NewsSourcesController : EpoxyController() {
@@ -21,7 +20,10 @@ class NewsSourcesController : EpoxyController() {
             newsSourceItem {
                 id(source.id)
                 source(source)
-                onSourceClicked { view -> view.findNavController().navigate(R.id.newsArticlesFragment) }
+                onSourceClicked { view ->
+                    val action = NewsSourcesFragmentDirections.openArticlesOfSource(source.id)
+                    view.findNavController().navigate(action)
+                }
             }
         }
     }

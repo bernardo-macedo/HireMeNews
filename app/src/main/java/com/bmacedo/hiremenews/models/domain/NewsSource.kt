@@ -1,4 +1,4 @@
-package com.bmacedo.hiremenews.models
+package com.bmacedo.hiremenews.models.domain
 
 data class NewsSource(
     val id: String,

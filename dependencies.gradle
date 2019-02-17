@@ -20,6 +20,8 @@ ext {
             epoxy           : '3.3.0',
             firebase        : '16.0.1',
             crashlytics     : '2.9.9',
+            autoDispose     : '1.1.0',
+            lifecycle       : '2.0.0-rc01',
 
             espresso        : '3.1.2-alpha01',
             testRunner      : '1.1.2-alpha01',
@@ -42,6 +44,7 @@ ext {
             constraintLayout    : "androidx.constraintlayout:constraintlayout:$versions.constraintLayout",
             recyclerView        : "androidx.recyclerview:recyclerview:$versions.recyclerView",
             multiDex            : "androidx.multidex:multidex:$versions.multiDex",
+            lifecycle           : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle",
             navCommonKtx        : "android.arch.navigation:navigation-common-ktx:$versions.navigation",
             navFragmentKtx      : "android.arch.navigation:navigation-fragment-ktx:$versions.navigation",
             navRuntimeKtx       : "android.arch.navigation:navigation-runtime-ktx:$versions.navigation",
@@ -50,8 +53,11 @@ ext {
     ]
 
     rxJava = [
-            rxKotlin : "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin",
-            rxAndroid: "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
+            rxKotlin        : "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin",
+            rxAndroid       : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
+            autoDispose     : "com.uber.autodispose:autodispose-ktx:$versions.autoDispose",
+            autoDisposeAndr : "com.uber.autodispose:autodispose-android:$versions.autoDispose",
+            autoDisposeArch : "com.uber.autodispose:autodispose-android-archcomponents-ktx:$versions.autoDispose",
             traceur         : "com.tspoon.traceur:traceur:$versions.traceur"
     ]
 
@@ -101,7 +107,9 @@ ext {
             espressoConcurrent  : "androidx.test.espresso.idling:idling-concurrent:$versions.espresso",
             espressoNetIdle     : "androidx.test.espresso.idling:idling-net:$versions.espresso",
             testRunner          : "androidx.test:runner:$versions.testRunner",
-            testRules           : "androidx.test:rules:$versions.testRunner"
+            testRules           : "androidx.test:rules:$versions.testRunner",
+            restMock            : "com.github.andrzejchm.RESTMock:android:$versions.restMock",
+            mockitoKotlin       : "com.nhaarman:mockito-kotlin:$versions.mockitoKotlin"
     ] + mockito + restMock
 
     leakCannary = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"

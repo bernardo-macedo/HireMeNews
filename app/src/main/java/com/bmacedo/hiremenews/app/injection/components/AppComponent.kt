@@ -21,7 +21,11 @@ import javax.inject.Singleton
         ActivityBindings::class,
         FragmentBindings::class,
         InterfaceBindings::class,
-        AnalyticsModule::class]
+        AnalyticsModule::class,
+        NetworkModule::class,
+        RepositoryModule::class,
+        ViewModelModule::class
+    ]
 )
 interface AppComponent : AndroidInjector<HireMeNews> {
 

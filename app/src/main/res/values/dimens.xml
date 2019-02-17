@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Shapes -->
+    <dimen name="round_shape_corner_radius">6dp</dimen>
+
+    <!-- News Sources-->
     <dimen name="news_source_label_vertical_margin">4dp</dimen>
     <dimen name="news_source_horizontal_margin">8dp</dimen>
+
+    <!-- Loading Dialog -->
+    <dimen name="loading_dialog_margin">30dp</dimen>
+
 </resources>

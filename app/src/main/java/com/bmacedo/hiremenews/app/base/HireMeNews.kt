@@ -6,6 +6,7 @@ import android.content.Context
 import androidx.multidex.MultiDex
 import com.bmacedo.hiremenews.app.analytics.CrashMonitor
 import com.bmacedo.hiremenews.app.injection.components.DaggerAppComponent
+import com.bmacedo.hiremenews.app.injection.modules.AppModule
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
@@ -32,7 +33,9 @@ open class HireMeNews : Application(), HasActivityInjector {
     }
 
     private fun initDependencyInjection() {
-        DaggerAppComponent.create()
+        DaggerAppComponent.builder()
+            .appModule(AppModule(this))
+            .build()
             .inject(this)
     }
 

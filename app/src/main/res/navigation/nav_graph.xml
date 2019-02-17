@@ -11,12 +11,16 @@
         android:label="fragment_news_sources"
         tools:layout="@layout/fragment_news_sources">
         <action
-            android:id="@+id/action_newsSourcesFragment_to_newsArticlesFragment"
+            android:id="@+id/openArticlesOfSource"
             app:destination="@id/newsArticlesFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsArticlesFragment"
         android:name="com.bmacedo.hiremenews.articles.NewsArticlesFragment"
         android:label="fragment_news_articles"
-        tools:layout="@layout/fragment_news_articles" />
+        tools:layout="@layout/fragment_news_articles">
+        <argument
+            android:name="sourceId"
+            app:argType="string" />
+    </fragment>
 </navigation>

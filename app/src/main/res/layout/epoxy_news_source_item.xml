@@ -4,13 +4,13 @@
 
     <data>
 
-        <import type="com.bmacedo.hiremenews.models.NewsSource" />
+        <import type="com.bmacedo.hiremenews.models.domain.NewsSource" />
 
         <import type="android.view.View.OnClickListener" />
 
         <variable
             name="source"
-            type="NewsSource" />
+            type="com.bmacedo.hiremenews.models.domain.NewsSource" />
 
         <variable
             name="onSourceClicked"
