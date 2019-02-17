@@ -3,7 +3,7 @@ package com.bmacedo.hiremenews.sources
 import android.content.res.Resources
 import com.bmacedo.hiremenews.app.api.NewsApi
 import com.bmacedo.hiremenews.app.injection.modules.AppModule
-import com.bmacedo.hiremenews.models.api.NewsSourceListResponse
+import com.bmacedo.hiremenews.models.api.source.NewsSourceListResponse
 import com.bmacedo.hiremenews.models.mappers.NewsSourceMapper
 import com.bmacedo.hiremenews.testhelpers.RxImmediateRule
 import com.nhaarman.mockito_kotlin.any

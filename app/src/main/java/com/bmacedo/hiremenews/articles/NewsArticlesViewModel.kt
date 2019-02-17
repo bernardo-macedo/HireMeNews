@@ -1,63 +1,61 @@
-package com.bmacedo.hiremenews.sources
+package com.bmacedo.hiremenews.articles
 
 import android.content.res.Resources
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bmacedo.hiremenews.R
-import com.bmacedo.hiremenews.models.domain.NewsSource
+import com.bmacedo.hiremenews.models.domain.NewsArticle
 import com.bmacedo.hiremenews.utils.AutoDisposeViewModel
 import com.bmacedo.hiremenews.utils.Executors
 import com.uber.autodispose.autoDisposable
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 
-class NewsSourcesViewModel(
-    private val newsSourcesRepository: NewsSourcesRepository,
+class NewsArticlesViewModel(
+    private val newsArticlesRepository: NewsArticlesRepository,
     private val resources: Resources,
     private val executors: Executors
 ) : AutoDisposeViewModel() {
 
-    private val viewRelay = BehaviorSubject.create<NewsSourcesViewState>()
+    private val viewRelay = BehaviorSubject.create<NewsArticlesViewState>()
 
     /**
      * Returns the view state observable
      */
-    fun viewState(): Observable<NewsSourcesViewState> = viewRelay.hide()
+    fun viewState(): Observable<NewsArticlesViewState> = viewRelay.hide()
 
     /**
-     * Retrieves news sources
+     * Retrieve the articles related to a given source
      */
-    fun getNewsSources() {
-        if (!viewRelay.hasValue()) {
-            viewRelay.onNext(NewsSourcesViewState.Loading)
-        }
-        newsSourcesRepository.getNewsSources()
+    fun getArticlesFromSource(sourceId: String) {
+        viewRelay.onNext(NewsArticlesViewState.Loading)
+        newsArticlesRepository.getArticlesFromSource(sourceId)
             .subscribeOn(executors.networkIO())
             .observeOn(executors.mainThread())
             .autoDisposable(this)
-            .subscribe(this::onNewsSourcesSuccess) { e -> onNewsSourcesError(e) }
-
+            .subscribe(this::onNewsArticlesSuccess) { e -> onNewsSourcesError(e) }
     }
 
-    private fun onNewsSourcesSuccess(sources: List<NewsSource>) {
-        viewRelay.onNext(NewsSourcesViewState.Success(sources))
+
+    private fun onNewsArticlesSuccess(articles: List<NewsArticle>) {
+        viewRelay.onNext(NewsArticlesViewState.Success(articles))
     }
 
     private fun onNewsSourcesError(e: Throwable) {
         val errorMessage = e.message ?: resources.getString(R.string.generic_error_message)
-        viewRelay.onNext(NewsSourcesViewState.Error(errorMessage))
+        viewRelay.onNext(NewsArticlesViewState.Error(errorMessage))
     }
 
     class Factory(
-        private val newsSourcesRepository: NewsSourcesRepository,
+        private val newsArticlesRepository: NewsArticlesRepository,
         private val resources: Resources,
         private val executors: Executors
     ) : ViewModelProvider.NewInstanceFactory() {
 
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(NewsSourcesViewModel::class.java)) {
-                return NewsSourcesViewModel(newsSourcesRepository, resources, executors) as T
+            if (modelClass.isAssignableFrom(NewsArticlesViewModel::class.java)) {
+                return NewsArticlesViewModel(newsArticlesRepository, resources, executors) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }

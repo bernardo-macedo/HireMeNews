@@ -9,8 +9,6 @@ import com.bmacedo.hiremenews.R
 import com.bmacedo.hiremenews.app.base.BaseFragment
 import com.bmacedo.hiremenews.models.domain.NewsSource
 import com.bmacedo.hiremenews.utils.Executors
-import com.bmacedo.hiremenews.utils.LoadingDialog
-import com.google.android.material.snackbar.Snackbar
 import com.uber.autodispose.ScopeProvider
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
 import com.uber.autodispose.autoDisposable
@@ -74,19 +72,5 @@ class NewsSourcesFragment : BaseFragment() {
 
     private fun updateList(sources: List<NewsSource>) {
         listController.updateSources(sources)
-    }
-
-    private fun showError(errorMessage: String) {
-        view?.let { view ->
-            Snackbar.make(view, errorMessage, Snackbar.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun hideLoading() {
-        LoadingDialog.hide(this)
-    }
-
-    private fun showLoading() {
-        LoadingDialog.show(this)
     }
 }

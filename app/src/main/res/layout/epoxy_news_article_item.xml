@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.bmacedo.hiremenews.models.domain.NewsArticle" />
+
+        <variable
+            name="article"
+            type="com.bmacedo.hiremenews.models.domain.NewsArticle" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/news_source_horizontal_margin"
+        android:layout_marginEnd="@dimen/news_source_horizontal_margin"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/news_article_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/news_source_label_vertical_margin"
+            android:text="@{article.title}"
+            tools:text="BBC" />
+
+        <TextView
+            android:id="@+id/news_article_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/news_source_label_vertical_margin"
+            android:text="@{article.content}"
+            tools:text="BBC Headlines. News 24/7" />
+
+        <TextView
+            android:id="@+id/news_article_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/news_source_label_vertical_margin"
+            android:layout_marginBottom="@dimen/news_source_label_vertical_margin"
+            android:autoLink="web"
+            android:text="@{article.url}"
+            tools:text="bbc.com" />
+
+        <ImageView
+            android:id="@+id/news_article_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/news_source_label_vertical_margin"
+            android:layout_marginBottom="@dimen/news_source_label_vertical_margin"
+            android:contentDescription="@{article.description}"
+            android:scaleType="fitCenter"
+            app:imageUrl="@{article.urlToImage}"
+            tools:src="@tools:sample/cities" />
+    </LinearLayout>
+</layout>

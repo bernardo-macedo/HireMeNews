@@ -1,6 +1,6 @@
 package com.bmacedo.hiremenews.models.mappers
 
-import com.bmacedo.hiremenews.models.api.NewsSourceListResponse
+import com.bmacedo.hiremenews.models.api.source.NewsSourceListResponse
 import com.bmacedo.hiremenews.models.domain.NewsSource
 
 class NewsSourceMapper : DomainMapper<NewsSourceListResponse, List<NewsSource>> {

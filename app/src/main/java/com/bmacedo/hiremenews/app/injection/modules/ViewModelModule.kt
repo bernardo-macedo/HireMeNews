@@ -1,6 +1,8 @@
 package com.bmacedo.hiremenews.app.injection.modules
 
 import android.content.res.Resources
+import com.bmacedo.hiremenews.articles.NewsArticlesRepository
+import com.bmacedo.hiremenews.articles.NewsArticlesViewModel
 import com.bmacedo.hiremenews.sources.NewsSourcesRepository
 import com.bmacedo.hiremenews.sources.NewsSourcesViewModel
 import com.bmacedo.hiremenews.utils.Executors
@@ -19,6 +21,16 @@ class ViewModelModule {
         executors: Executors
     ): NewsSourcesViewModel.Factory {
         return NewsSourcesViewModel.Factory(newsSourcesRepository, resources, executors)
+    }
+
+    @Provides
+    @Singleton
+    fun providesNewsArticlesViewModelFactory(
+        newsArticlesRepository: NewsArticlesRepository,
+        resources: Resources,
+        executors: Executors
+    ): NewsArticlesViewModel.Factory {
+        return NewsArticlesViewModel.Factory(newsArticlesRepository, resources, executors)
     }
 
 }

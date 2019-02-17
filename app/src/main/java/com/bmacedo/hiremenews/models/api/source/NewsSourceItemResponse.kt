@@ -1,5 +1,6 @@
-package com.bmacedo.hiremenews.models.api
+package com.bmacedo.hiremenews.models.api.source
 
+import com.bmacedo.hiremenews.models.api.GenericResponse
 import com.squareup.moshi.Json
 
 data class NewsSourceItemResponse(
