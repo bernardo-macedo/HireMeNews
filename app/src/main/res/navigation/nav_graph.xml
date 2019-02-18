@@ -8,19 +8,28 @@
     <fragment
         android:id="@+id/newsSourcesFragment"
         android:name="com.bmacedo.hiremenews.sources.NewsSourcesFragment"
-        android:label="fragment_news_sources"
+        android:label="Hire Me News"
         tools:layout="@layout/fragment_news_sources">
         <action
             android:id="@+id/openArticlesOfSource"
             app:destination="@id/newsArticlesFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/newsArticlesFragment"
         android:name="com.bmacedo.hiremenews.articles.NewsArticlesFragment"
-        android:label="fragment_news_articles"
+        android:label="{sourceName}"
         tools:layout="@layout/fragment_news_articles">
         <argument
             android:name="sourceId"
             app:argType="string" />
+        <argument
+            android:name="sourceName"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_newsArticlesFragment_to_newsSourcesFragment"
+            app:popUpTo="@id/newsSourcesFragment" />
     </fragment>
+
 </navigation>

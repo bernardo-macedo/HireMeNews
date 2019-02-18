@@ -2,6 +2,7 @@ package com.bmacedo.hiremenews.models.mappers
 
 import com.bmacedo.hiremenews.models.api.article.NewsArticleListResponse
 import com.bmacedo.hiremenews.models.domain.NewsArticle
+import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,13 +31,23 @@ class NewsArticleMapper : DomainMapper<NewsArticleListResponse, List<NewsArticle
         return newsArticles
     }
 
-    private fun parseDate(publishedAt: String?): Date? {
-        val dateFormat = SimpleDateFormat.getDateTimeInstance()
+    private fun parseDate(publishedAt: String?): String? {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.UK)
         return try {
-            dateFormat.parse(publishedAt)
+            val date = dateFormat.parse(publishedAt)
+            DATE_HOUR_FORMAT.get()?.format(date)
         } catch (e: ParseException) {
             null
         }
+    }
 
+    companion object DateHelper {
+        const val DATE_HOUR_STRING = "dd/MM/yyyy - HH:mm:ss"
+
+        val DATE_HOUR_FORMAT = object : ThreadLocal<DateFormat>() {
+            override fun initialValue(): DateFormat {
+                return SimpleDateFormat(DATE_HOUR_STRING, Locale.UK)
+            }
+        }
     }
 }

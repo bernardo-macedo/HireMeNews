@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Shapes -->
-    <dimen name="round_shape_corner_radius">6dp</dimen>
 
-    <!-- News Sources-->
-    <dimen name="news_source_label_vertical_margin">4dp</dimen>
-    <dimen name="news_source_horizontal_margin">8dp</dimen>
+    <!-- General -->
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="icon_internal_padding">8dp</dimen>
 
-    <!-- Loading Dialog -->
-    <dimen name="loading_dialog_margin">30dp</dimen>
+    <!-- News source -->
+    <dimen name="news_source_card_external_margin">8dp</dimen>
+    <dimen name="news_source_card_internal_margin">16dp</dimen>
+    <dimen name="news_source_vertical_spacing">4dp</dimen>
+    <dimen name="news_source_horizontal_spacing">4dp</dimen>
+
+    <!-- News article-->
+    <dimen name="news_article_card_external_margin">8dp</dimen>
+    <dimen name="news_article_card_internal_margin">16dp</dimen>
+    <dimen name="news_article_vertical_spacing">8dp</dimen>
+    <dimen name="news_article_image_height">200dp</dimen>
+    <dimen name="news_article_title_text_size">22sp</dimen>
+    <dimen name="news_article_publication_info_text_size">12sp</dimen>
 
 </resources>

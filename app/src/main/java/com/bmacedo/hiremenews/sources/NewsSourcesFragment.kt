@@ -29,7 +29,7 @@ class NewsSourcesFragment : BaseFragment() {
 
     private val scope: ScopeProvider by lazy { AndroidLifecycleScopeProvider.from(this) }
 
-    private val listController = NewsSourcesController()
+    private val listController = NewsSourcesController(context?.applicationContext)
 
     override fun onCreateView(
         inflater: LayoutInflater,

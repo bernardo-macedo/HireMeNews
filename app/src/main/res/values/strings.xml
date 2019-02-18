@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">Hire Me News</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="generic_error_message">An error has occurred. Please try again.</string>
+
+    <!-- News source -->
+    <string name="ic_open_in_new_content_description">Abrir no navegador</string>
+
+    <!-- News article -->
+    <string name="news_article_title">Articles</string>
+    <string name="news_article_publication_info">%1$s - %2$s</string>
+
 </resources>
