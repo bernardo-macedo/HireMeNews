@@ -17,6 +17,7 @@ interface NewsApi {
     @GET("v2/everything")
     fun getArticles(
         @Query("sources") sourceId: String,
+        @Query("page") page: Int,
         @Query("apiKey") apiKey: String
     ): Single<NewsArticleListResponse>
 

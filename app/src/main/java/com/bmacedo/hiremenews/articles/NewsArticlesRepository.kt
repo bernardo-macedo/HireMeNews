@@ -20,8 +20,8 @@ class NewsArticlesRepository(
      * Retrieves all the articles related to a given news source.
      * Eg. All articles from BBC.
      */
-    fun getArticlesFromSource(sourceId: String): Single<List<NewsArticle>> {
-        return api.getArticles(sourceId, resource.getString(R.string.NEWS_API_KEY))
+    fun getArticlesFromSource(sourceId: String, page: Int): Single<List<NewsArticle>> {
+        return api.getArticles(sourceId, page, resource.getString(R.string.NEWS_API_KEY))
             .onErrorMapMessage(moshi)
             .map { newsArticleMapper.toDomainModel(it) }
     }

@@ -8,7 +8,8 @@ import com.bmacedo.hiremenews.models.domain.NewsArticle
 import com.bmacedo.hiremenews.utils.AutoDisposeViewModel
 import com.bmacedo.hiremenews.utils.Executors
 import com.uber.autodispose.autoDisposable
-import io.reactivex.Observable
+import io.reactivex.BackpressureStrategy
+import io.reactivex.Flowable
 import io.reactivex.subjects.BehaviorSubject
 
 class NewsArticlesViewModel(
@@ -22,14 +23,14 @@ class NewsArticlesViewModel(
     /**
      * Returns the view state observable
      */
-    fun viewState(): Observable<NewsArticlesViewState> = viewRelay.hide()
+    fun viewState(): Flowable<NewsArticlesViewState> = viewRelay.toFlowable(BackpressureStrategy.DROP)
 
     /**
      * Retrieve the articles related to a given source
      */
-    fun getArticlesFromSource(sourceId: String) {
+    fun getArticlesFromSource(sourceId: String, page: Int = 1) {
         viewRelay.onNext(NewsArticlesViewState.Loading)
-        newsArticlesRepository.getArticlesFromSource(sourceId)
+        newsArticlesRepository.getArticlesFromSource(sourceId, page)
             .subscribeOn(executors.networkIO())
             .observeOn(executors.mainThread())
             .autoDisposable(this)

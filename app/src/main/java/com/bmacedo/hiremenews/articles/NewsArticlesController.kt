@@ -17,6 +17,11 @@ class NewsArticlesController : EpoxyController() {
         requestModelBuild()
     }
 
+    fun addArticles(articles: List<NewsArticle>) {
+        articleList.addAll(articles)
+        requestModelBuild()
+    }
+
     override fun buildModels() {
         articleList.forEach { article ->
             newsArticleItem {
