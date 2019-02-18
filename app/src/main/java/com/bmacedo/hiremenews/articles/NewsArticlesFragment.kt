@@ -84,7 +84,14 @@ class NewsArticlesFragment : BaseFragment() {
     }
 
     private fun updateList(articles: List<NewsArticle>) {
-        listController.updateArticles(articles)
+        if (articles.isEmpty()) {
+            news_articles_list.visibility = View.INVISIBLE
+            news_articles_empty_state.visibility = View.VISIBLE
+        } else {
+            news_articles_list.visibility = View.VISIBLE
+            news_articles_empty_state.visibility = View.INVISIBLE
+            listController.updateArticles(articles)
+        }
     }
 
     private fun showLoading() {

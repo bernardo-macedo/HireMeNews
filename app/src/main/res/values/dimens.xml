@@ -12,6 +12,8 @@
     <dimen name="news_source_horizontal_spacing">4dp</dimen>
 
     <!-- News article-->
+    <dimen name="news_article_empty_state_gif_size">150dp</dimen>
+    <dimen name="news_article_empty_state_vertical_spacing">16dp</dimen>
     <dimen name="news_article_card_external_margin">8dp</dimen>
     <dimen name="news_article_card_internal_margin">16dp</dimen>
     <dimen name="news_article_vertical_spacing">8dp</dimen>

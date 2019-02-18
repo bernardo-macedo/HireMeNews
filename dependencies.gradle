@@ -30,7 +30,8 @@ ext {
             junit           : '4.12',
             leakcanary      : '1.6.2',
             multiDex        : '2.0.0',
-            mockitoKotlin   : '1.6.0'
+            mockitoKotlin   : '1.6.0',
+            lottie          : '3.0.0-beta1'
     ]
 
     mockito = [mockito: "org.mockito:mockito-core:$versions.mockito"]
@@ -141,10 +142,12 @@ ext {
     firebase = "com.google.firebase:firebase-core:$versions.firebase"
     crashlytics = "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics"
 
+    lottie = "com.airbnb.android:lottie:$versions.lottie"
+
     supportLibs = androidx.values()
     networkLibs = retrofit.values() + okHttp.values() + moshi.values()
     rxJavaLibs = rxJava.values()
-    otherLibs = [timber, glide, linkPreview, crashlytics] + epoxy.values() + dagger.values()
+    otherLibs = [timber, glide, linkPreview, crashlytics, lottie] + epoxy.values() + dagger.values()
 
     debugLibs = onlyDebug.values() + leakCannary
     releaseLibs = onlyRelease.values() + leakCannary

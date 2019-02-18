@@ -8,6 +8,7 @@
 
     <!-- News article -->
     <string name="news_article_title">Articles</string>
+    <string name="news_article_empty_state">Nothing to see here…</string>
     <string name="news_article_publication_info">%1$s - %2$s</string>
 
 </resources>
