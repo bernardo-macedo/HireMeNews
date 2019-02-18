@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.bmacedo.hiremenews.models.domain.NewsArticle" />
+
+        <import type="android.view.View.OnClickListener" />
+
+        <variable
+            name="article"
+            type="com.bmacedo.hiremenews.models.domain.NewsArticle" />
+
+        <variable
+            name="onArticleClicked"
+            type="OnClickListener" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/news_article_card_external_margin"
+        android:layout_marginBottom="@dimen/news_article_card_external_margin"
+        android:onClick="@{onArticleClicked}"
+        app:elevation="@dimen/card_elevation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/news_article_title"
+                style="@style/NewsArticleTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/news_article_card_internal_margin"
+                android:layout_marginTop="@dimen/news_article_card_internal_margin"
+                android:layout_marginEnd="@dimen/news_article_card_internal_margin"
+                android:text="@{article.title}"
+                tools:text="BBC" />
+
+            <TextView
+                android:id="@+id/news_article_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/news_article_card_internal_margin"
+                android:layout_marginTop="@dimen/news_article_vertical_spacing"
+                android:layout_marginEnd="@dimen/news_article_card_internal_margin"
+                android:text="@{article.description}"
+                tools:text="BBC Headlines. News 24/7" />
+
+            <ImageView
+                android:id="@+id/news_article_image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/news_article_image_height"
+                android:layout_marginTop="@dimen/news_article_vertical_spacing"
+                android:layout_marginBottom="@dimen/news_article_vertical_spacing"
+                android:background="@color/grey"
+                android:contentDescription="@{article.title}"
+                android:scaleType="fitCenter"
+                app:imageUrl="@{article.urlToImage}"
+                tools:src="@tools:sample/cities" />
+
+            <TextView
+                android:id="@+id/news_article_publication_info"
+                style="@style/NewsArticlePublicationInfoText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/news_article_card_internal_margin"
+                android:layout_marginEnd="@dimen/news_article_card_internal_margin"
+                android:layout_marginBottom="@dimen/news_article_card_internal_margin"
+                android:text="@{article.getPublicationInfo(context)}"
+                tools:text="17/02/2019 - Bernardo" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

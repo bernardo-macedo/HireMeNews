@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 apply from: '../dependencies.gradle'
 
 android {
@@ -12,23 +13,41 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner "io.appflate.restmock.android.RESTMockTestRunner"
+        testInstrumentationRunner 'com.github.tmurakami.dexopener.DexOpenerAndroidJUnitRunner'
+        multiDexEnabled true
+        resValue 'string', "BASE_URL", "\"https://newsapi.org/\""
     }
     buildTypes {
         debug {
-            buildConfigField 'String', "NEWS_API_KEY", "825001404fa84e509924f1b213a86bec"
+            resValue 'string', "NEWS_API_KEY", "\"825001404fa84e509924f1b213a86bec\""
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             // TODO: CREATE THE RELEASE API KEY ON CI SERVER
-            buildConfigField 'String', "NEWS_API_KEY", "825001404fa84e509924f1b213a86bec"
+            resValue 'string', "NEWS_API_KEY", "\"825001404fa84e509924f1b213a86bec\""
         }
     }
-}
-
-kapt {
-    correctErrorTypes = true
+    sourceSets {
+        String sharedTestDir = 'src/sharedTest/java'
+        test {
+            java.srcDir sharedTestDir
+        }
+        androidTest {
+            java.srcDir sharedTestDir
+        }
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+    kapt {
+        correctErrorTypes = true
+    }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -36,10 +55,16 @@ dependencies {
     implementation supportLibs
     implementation networkLibs
     implementation rxJavaLibs
+    implementation firebase
     implementation otherLibs
+
     debugImplementation debugLibs
     releaseImplementation releaseLibs
+
     kapt annotationProcessorLibs
+
     testImplementation unitTestLibs
     androidTestImplementation androidTestsLibs
 }
+
+apply plugin: 'com.google.gms.google-services'

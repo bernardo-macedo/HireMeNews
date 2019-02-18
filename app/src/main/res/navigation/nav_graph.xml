@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/newsSourcesFragment">
+
+    <fragment
+        android:id="@+id/newsSourcesFragment"
+        android:name="com.bmacedo.hiremenews.sources.NewsSourcesFragment"
+        android:label="Hire Me News"
+        tools:layout="@layout/fragment_news_sources">
+        <action
+            android:id="@+id/openArticlesOfSource"
+            app:destination="@id/newsArticlesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newsArticlesFragment"
+        android:name="com.bmacedo.hiremenews.articles.NewsArticlesFragment"
+        android:label="{sourceName}"
+        tools:layout="@layout/fragment_news_articles">
+        <argument
+            android:name="sourceId"
+            app:argType="string" />
+        <argument
+            android:name="sourceName"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+</navigation>
