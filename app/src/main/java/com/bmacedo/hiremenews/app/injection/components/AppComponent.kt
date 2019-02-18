@@ -2,7 +2,10 @@ package com.bmacedo.hiremenews.app.injection.components
 
 import android.app.Application
 import com.bmacedo.hiremenews.app.base.HireMeNews
-import com.bmacedo.hiremenews.app.injection.modules.*
+import com.bmacedo.hiremenews.app.injection.modules.ActivityBindings
+import com.bmacedo.hiremenews.app.injection.modules.AppModule
+import com.bmacedo.hiremenews.app.injection.modules.FragmentBindings
+import com.bmacedo.hiremenews.app.injection.modules.InterfaceBindings
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
@@ -20,11 +23,7 @@ import javax.inject.Singleton
         AppModule::class,
         ActivityBindings::class,
         FragmentBindings::class,
-        InterfaceBindings::class,
-        AnalyticsModule::class,
-        NetworkModule::class,
-        RepositoryModule::class,
-        ViewModelModule::class
+        InterfaceBindings::class
     ]
 )
 interface AppComponent : AndroidInjector<HireMeNews> {

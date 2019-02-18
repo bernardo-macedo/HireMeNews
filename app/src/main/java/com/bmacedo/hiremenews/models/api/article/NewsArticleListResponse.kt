@@ -5,5 +5,5 @@ import com.squareup.moshi.Json
 
 data class NewsArticleListResponse(
     @Json(name = "totalResults") val totalResults: Int = 0,
-    @Json(name = "articles") val sources: List<NewsArticleItemResponse> = emptyList()
+    @Json(name = "articles") val articles: List<NewsArticleItemResponse> = emptyList()
 ) : GenericResponse()

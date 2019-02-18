@@ -13,7 +13,8 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "io.appflate.restmock.android.RESTMockTestRunner"
+//        testInstrumentationRunner "io.appflate.restmock.android.RESTMockTestRunner"
+        testInstrumentationRunner 'com.github.tmurakami.dexopener.DexOpenerAndroidJUnitRunner'
         multiDexEnabled true
         resValue 'string', "BASE_URL", "\"https://newsapi.org/\""
     }

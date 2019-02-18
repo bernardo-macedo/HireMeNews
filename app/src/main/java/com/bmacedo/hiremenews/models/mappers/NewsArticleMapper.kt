@@ -14,7 +14,7 @@ class NewsArticleMapper : DomainMapper<NewsArticleListResponse, List<NewsArticle
 
         val newsArticles = mutableListOf<NewsArticle>()
 
-        response.sources.forEach { articleItem ->
+        response.articles.forEach { articleItem ->
             newsArticles.add(
                 NewsArticle(
                     author = articleItem.author,

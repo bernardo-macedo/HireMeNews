@@ -24,19 +24,25 @@ ext {
             lifecycle       : '2.0.0-rc01',
 
             espresso        : '3.1.2-alpha01',
-            testRunner      : '1.1.2-alpha01',
+            testRunner      : '1.1.0',
             restMock        : '0.3.2',
             mockito         : '2.23.4',
             junit           : '4.12',
             leakcanary      : '1.6.2',
             multiDex        : '2.0.0',
             mockitoKotlin   : '1.6.0',
+            daggerMock      : '0.8.4',
+            dexOpener       : '0.12.1',
             lottie          : '3.0.0-beta1'
     ]
 
     mockito = [mockito: "org.mockito:mockito-core:$versions.mockito"]
     junit = [junit: "junit:junit:$versions.junit"]
     restMock = [restMock: "com.github.andrzejchm.RESTMock:android:$versions.restMock"]
+    daggerMock = [
+            daggerMock      : "com.github.fabioCollini.daggermock:daggermock:$versions.daggerMock",
+            daggerMockKotlin: "com.github.fabioCollini.daggermock:daggermock-kotlin:$versions.daggerMock"
+    ]
 
 
     androidx = [
@@ -91,7 +97,6 @@ ext {
             harmcrestLib        : "org.hamcrest:hamcrest-library:$versions.hamcrest",
             hamcrestIntegration : "org.hamcrest:hamcrest-integration:1.4-atlassian-1",
             supportAnnotation   : "com.android.support:support-annotations:$versions.support",
-            restMock            : "com.github.andrzejchm.RESTMock:android:$versions.restMock",
             kotlinTest          : "org.jetbrains.kotlin:kotlin-test:$kotlin_version",
             kotlinJunit         : "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
             mockitoKotlin       : "com.nhaarman:mockito-kotlin:$versions.mockitoKotlin"
@@ -100,6 +105,7 @@ ext {
 
     androidTests = [
             mockitoAndroid      : "org.mockito:mockito-android:$versions.mockito",
+            dexOpener           : "com.github.tmurakami:dexopener:$versions.dexOpener",
             espressoCore        : "androidx.test.espresso:espresso-core:$versions.espresso",
             espressoContrib     : "androidx.test.espresso:espresso-contrib:$versions.espresso",
             espressoIntents     : "androidx.test.espresso:espresso-intents:$versions.espresso",
@@ -107,11 +113,10 @@ ext {
             espressoIdle        : "androidx.test.espresso:espresso-idling-resource:$versions.espresso",
             espressoConcurrent  : "androidx.test.espresso.idling:idling-concurrent:$versions.espresso",
             espressoNetIdle     : "androidx.test.espresso.idling:idling-net:$versions.espresso",
-            testRunner          : "androidx.test:runner:$versions.testRunner",
+            testRunner          : "androidx.test.ext:junit:$versions.testRunner",
             testRules           : "androidx.test:rules:$versions.testRunner",
-            restMock            : "com.github.andrzejchm.RESTMock:android:$versions.restMock",
             mockitoKotlin       : "com.nhaarman:mockito-kotlin:$versions.mockitoKotlin"
-    ] + mockito + restMock
+    ] + restMock + daggerMock
 
     leakCannary = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
     timber = "com.jakewharton.timber:timber:$versions.timber"
