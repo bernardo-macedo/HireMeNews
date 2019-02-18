@@ -4,7 +4,7 @@
     <string name="generic_error_message">An error has occurred. Please try again.</string>
 
     <!-- News source -->
-    <string name="ic_open_in_new_content_description">Abrir no navegador</string>
+    <string name="ic_open_in_new_content_description">Open in Browser</string>
 
     <!-- News article -->
     <string name="news_article_title">Articles</string>

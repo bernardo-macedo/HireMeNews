@@ -13,4 +13,5 @@ abstract class FragmentBindings {
 
     @ContributesAndroidInjector
     abstract fun contributesNewsArticlesFragment(): NewsArticlesFragment
+
 }

@@ -27,9 +27,6 @@
             android:name="sourceName"
             app:argType="string"
             app:nullable="true" />
-        <action
-            android:id="@+id/action_newsArticlesFragment_to_newsSourcesFragment"
-            app:popUpTo="@id/newsSourcesFragment" />
     </fragment>
 
 </navigation>
