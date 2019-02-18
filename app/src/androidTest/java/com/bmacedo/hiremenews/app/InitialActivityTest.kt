@@ -12,14 +12,11 @@ import androidx.test.rule.ActivityTestRule
 import com.bmacedo.hiremenews.R
 import com.bmacedo.hiremenews.app.RecyclerViewMatcher.Companion.withRecyclerView
 import com.bmacedo.hiremenews.app.base.HireMeNews
-import com.bmacedo.hiremenews.articles.NewsArticlesRepository
-import com.bmacedo.hiremenews.models.domain.NewsArticle
 import com.bmacedo.hiremenews.models.domain.NewsSource
 import com.bmacedo.hiremenews.sources.NewsSourcesFragment
 import com.bmacedo.hiremenews.sources.NewsSourcesRepository
 import com.bmacedo.hiremenews.sources.NewsSourcesViewModel
 import com.bmacedo.hiremenews.utils.AppExecutors
-import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Single
@@ -34,8 +31,6 @@ import org.junit.runner.RunWith
 class InitialActivityTest {
 
     private val sourcesRepository: NewsSourcesRepository = mock()
-
-    private val articlesRepository: NewsArticlesRepository = mock()
 
     @get:Rule
     val activityTestRule = object : ActivityTestRule<InitialActivity>(InitialActivity::class.java, true, false) {
@@ -69,19 +64,6 @@ class InitialActivityTest {
         )
         whenever(sourcesRepository.getNewsSources()).thenReturn(Single.just(testSources))
 
-        val testArticles = listOf(
-            NewsArticle(
-                author = "Bernardo",
-                title = "Coinbase users can now withdraw Bitcoin",
-                description = "If you’re a Coinbase user, you may have seen some new tokens on your account.",
-                url = "http://techcrunch.com/2019/02/15/coinbase-users-can-now-withdraw-bitcoin-sv-following-bch-fork/",
-                urlToImage = "https://techcrunch.com/wp-content/uploads/2017/08/bitcoin-split-2017a.jpg?w=711",
-                publishedAt = "2019-02-15",
-                content = null
-            )
-        )
-
-        whenever(articlesRepository.getArticlesFromSource(any())).thenReturn(Single.just(testArticles))
     }
 
     @Test

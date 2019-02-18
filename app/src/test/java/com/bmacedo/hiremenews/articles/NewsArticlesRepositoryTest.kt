@@ -34,7 +34,7 @@ class NewsArticlesRepositoryTest {
     @Test
     fun getArticlesFromSource_whenValidRequest_ReturnsArticleList() {
         whenever(resources.getString(any())).thenReturn("valid value")
-        whenever(api.getArticles(any(), any())).thenReturn(
+        whenever(api.getArticles(any(), any(), any())).thenReturn(
             Single.just(
                 NewsArticleListResponse(
                     articles = listOf(
@@ -54,7 +54,7 @@ class NewsArticlesRepositoryTest {
 
         val testRepository = NewsArticlesRepository(api, resources, moshi, mapper)
 
-        testRepository.getArticlesFromSource("test Source").test()
+        testRepository.getArticlesFromSource("test Source", 1).test()
             .assertValue(
                 listOf(
                     NewsArticle(
@@ -82,11 +82,11 @@ class NewsArticlesRepositoryTest {
         val errorResponse = ResponseBody.create(MediaType.get("application/json"), errorBody)
         val httpException = HttpException(Response.error<NewsArticleListResponse>(400, errorResponse))
         whenever(resources.getString(any())).thenReturn("invalid value")
-        whenever(api.getArticles(any(), any())).thenReturn(Single.error(httpException))
+        whenever(api.getArticles(any(), any(), any())).thenReturn(Single.error(httpException))
 
         val testRepository = NewsArticlesRepository(api, resources, moshi, mapper)
 
-        testRepository.getArticlesFromSource("test Source").test()
+        testRepository.getArticlesFromSource("test Source", 1).test()
             .assertErrorMessage("Your API key is missing.")
     }
 

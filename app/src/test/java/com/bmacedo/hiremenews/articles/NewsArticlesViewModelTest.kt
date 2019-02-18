@@ -22,7 +22,7 @@ class NewsArticlesViewModelTest {
     @Test
     fun getArticlesFromSource_onInit_setStateToLoadingThenFinish() {
         val result: List<NewsArticle> = mock()
-        whenever(repository.getArticlesFromSource(any())).thenReturn(Single.just(result))
+        whenever(repository.getArticlesFromSource(any(), any())).thenReturn(Single.just(result))
 
         val testObserver = viewModel.viewState().test()
 
@@ -36,7 +36,12 @@ class NewsArticlesViewModelTest {
 
     @Test
     fun getArticlesFromSource_onError_setStateToLoadingThenError() {
-        whenever(repository.getArticlesFromSource(any())).thenReturn(Single.error(RuntimeException("test message")))
+        whenever(
+            repository.getArticlesFromSource(
+                any(),
+                any()
+            )
+        ).thenReturn(Single.error(RuntimeException("test message")))
 
         val testObserver = viewModel.viewState().test()
 

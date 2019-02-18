@@ -90,10 +90,13 @@ class NewsApiTest {
     fun getArticles_whenApiProvided_passesProperParameters() {
         val testApiKey = "testKey"
         val testSource = "abc-news"
+        val testPage = 1
         val apiKeyQueryParam = QueryParam("apiKey", testApiKey)
+        val pageQueryParam = QueryParam("page", testPage.toString())
         val sourceQueryParam = QueryParam("sources", testSource)
 
-        val requestMatchers = RequestMatchers.hasExactQueryParameters(apiKeyQueryParam, sourceQueryParam)
+        val requestMatchers =
+            RequestMatchers.hasExactQueryParameters(apiKeyQueryParam, sourceQueryParam, pageQueryParam)
 
         val mock200Response = """
              {
@@ -134,7 +137,7 @@ class NewsApiTest {
 
         val expectedResult = moshi.adapter(NewsArticleListResponse::class.java).fromJson(mock200Response)
 
-        api.getArticles(testSource, testApiKey).test()
+        api.getArticles(testSource, testPage, testApiKey).test()
             .assertValue(expectedResult)
             .assertNoErrors()
             .assertComplete()
