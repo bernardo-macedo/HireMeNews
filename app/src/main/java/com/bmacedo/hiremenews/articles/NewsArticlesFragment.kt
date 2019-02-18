@@ -44,12 +44,23 @@ class NewsArticlesFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        news_articles_list.setController(listController)
-
+        initializeViewComponents()
         if (savedInstanceState == null) {
-            viewModel.getArticlesFromSource(args.sourceId)
+            loadArticles()
         }
+        observeViewState()
+    }
 
+    private fun initializeViewComponents() {
+        news_articles_list.setController(listController)
+        news_articles_swipe_to_refresh.setOnRefreshListener { loadArticles() }
+    }
+
+    private fun loadArticles() {
+        viewModel.getArticlesFromSource(args.sourceId)
+    }
+
+    private fun observeViewState() {
         viewModel.viewState()
             .observeOn(executors.mainThread())
             .autoDisposable(scope)
@@ -74,6 +85,14 @@ class NewsArticlesFragment : BaseFragment() {
 
     private fun updateList(articles: List<NewsArticle>) {
         listController.updateArticles(articles)
+    }
+
+    private fun showLoading() {
+        news_articles_swipe_to_refresh.isRefreshing = true
+    }
+
+    private fun hideLoading() {
+        news_articles_swipe_to_refresh.isRefreshing = false
     }
 
 }
