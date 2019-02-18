@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_news_sources">
         <action
             android:id="@+id/openArticlesOfSource"
-            app:destination="@id/newsArticlesFragment" />
+            app:destination="@id/newsArticlesFragment"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment

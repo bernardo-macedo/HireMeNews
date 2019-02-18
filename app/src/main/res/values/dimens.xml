@@ -7,7 +7,6 @@
 
     <!-- News source -->
     <dimen name="news_source_card_external_margin">8dp</dimen>
-    <dimen name="news_source_card_internal_margin">16dp</dimen>
     <dimen name="news_source_vertical_spacing">4dp</dimen>
     <dimen name="news_source_horizontal_spacing">4dp</dimen>
 

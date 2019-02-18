@@ -70,8 +70,8 @@
                 android:clickable="true"
                 android:contentDescription="@string/ic_open_in_new_content_description"
                 android:focusable="true"
-                android:padding="@dimen/icon_internal_padding"
                 android:onClick="@{onSourceUrlClicked}"
+                android:padding="@dimen/icon_internal_padding"
                 android:src="@drawable/ic_open_in_new"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
