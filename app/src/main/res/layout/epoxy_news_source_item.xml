@@ -36,7 +36,7 @@
             android:background="?attr/selectableItemBackground"
             android:onClick="@{onSourceClicked}"
             android:orientation="vertical"
-            android:padding="@dimen/news_article_card_internal_margin">
+            android:padding="@dimen/news_source_card_internal_margin">
 
             <TextView
                 android:id="@+id/news_source_title"
