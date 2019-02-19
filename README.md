@@ -20,13 +20,6 @@ To deal with data sets, the `Repository` pattern is applied, which controls poss
 
 Linking everything together is a reactive stream of `Observables` from RxJava. The API returns the events, which get mapped and transformed in the Repository layer, before being subscribed in the ViewModel and relayed to the View in the form of `ViewStates`. The UI renders the ViewStates also in a reactive approach.
 
-```mermaid
-graph TB
-A(Activity/Fragment)-->B(ViewModel)
-B(ViewModel)-->C(Repository)
-C-->D(API)
-```
-
 ##### Navigation
 
 There is a single activity in the project, called `InitialActivity`. All the content is delegated to fragments which are configured using the Navigation Library to link between the different screens.
@@ -66,9 +59,9 @@ This project is continuously build and checked for errors using Bitrise.
 
 ### Screenshots
 
-![photo5140978744557676639](ipic/photo5140978744557676639-0540933.jpg)
+![photo5140978744557676639](docs/photo5140978744557676639.jpg)
 
-![photo5143521872003049545](ipic/photo5143521872003049545-0540950.jpg)
+![photo5143521872003049545](docs/photo5143521872003049545.jpg)
 
 ### Libraries
 
