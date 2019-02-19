@@ -53,12 +53,9 @@ dependencies {
     implementation rxJavaLibs
     implementation firebase
     implementation otherLibs
-
     debugImplementation debugLibs
     releaseImplementation releaseLibs
-
     kapt annotationProcessorLibs
-
     testImplementation unitTestLibs
     androidTestImplementation androidTestsLibs
 }

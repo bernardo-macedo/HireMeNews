@@ -1,3 +1,7 @@
+---
+typora-copy-images-to: ipic
+---
+
 # Hire Me News
 
 Hire Me News is a sample News reader project that showcases Android development best practices under a MVVM architecture while also making you informed of the latest news!
@@ -62,7 +66,9 @@ This project is continuously build and checked for errors using Bitrise.
 
 ### Screenshots
 
+![photo5140978744557676639](ipic/photo5140978744557676639-0540933.jpg)
 
+![photo5143521872003049545](ipic/photo5143521872003049545-0540950.jpg)
 
 ### Libraries
 
