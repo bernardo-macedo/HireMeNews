@@ -59,9 +59,7 @@ This project is continuously build and checked for errors using Bitrise.
 
 ### Screenshots
 
-![photo5140978744557676639](docs/photo5140978744557676639.jpg)
-
-![photo5143521872003049545](docs/photo5143521872003049545.jpg)
+![photo5140978744557676639](docs/photo5140978744557676639.jpg) ![photo5143521872003049545](docs/photo5143521872003049545.jpg)
 
 ### Libraries
 
