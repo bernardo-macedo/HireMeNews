@@ -63,7 +63,7 @@
                 android:contentDescription="@{article.title}"
                 android:scaleType="fitCenter"
                 app:imageUrl="@{article.urlToImage}"
-                tools:src="@tools:sample/cities" />
+                tools:src="@drawable/logo" />
 
             <TextView
                 android:id="@+id/news_article_publication_info"
