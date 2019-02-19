@@ -15,7 +15,6 @@ import com.bmacedo.hiremenews.utils.Executors
 import com.uber.autodispose.ScopeProvider
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
 import com.uber.autodispose.autoDisposable
-import io.reactivex.processors.PublishProcessor
 import kotlinx.android.synthetic.main.fragment_news_articles.*
 import javax.inject.Inject
 
@@ -38,15 +37,11 @@ class NewsArticlesFragment : BaseFragment() {
 
     private val args: NewsArticlesFragmentArgs by navArgs()
 
-    private val paginator = PublishProcessor.create<Int>()
-
-    private var loading = false
-
-    private var pageNumber = 1
-
-    private var lastVisibleItem: Int = 0
-
-    private var totalItemCount: Int = 0
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.init(args.sourceId)
+        observeViewState()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,53 +55,9 @@ class NewsArticlesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         initializeViewComponents()
         setUpLoadMoreListener()
-        subscribeForData()
         if (savedInstanceState == null) {
             loadArticles()
         }
-    }
-
-    private fun subscribeForData() {
-        paginator.onBackpressureDrop()
-            .flatMap { page ->
-                showLoading()
-                viewModel.getArticlesFromSource(args.sourceId, page)
-                return@flatMap viewModel.viewState()
-            }
-            .observeOn(executors.mainThread())
-            .autoDisposable(scope)
-            .subscribe({ state ->
-                updateUi(state)
-            }, { })
-    }
-
-    private fun setUpLoadMoreListener() {
-        val layoutManager = LinearLayoutManager(context)
-        news_articles_list.layoutManager = layoutManager
-        news_articles_list.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                totalItemCount = layoutManager.itemCount
-                lastVisibleItem = layoutManager.findLastVisibleItemPosition()
-                if (!loading && totalItemCount <= lastVisibleItem + VISIBLE_THRESHOLD) {
-                    pageNumber++
-                    paginator.onNext(pageNumber)
-                }
-            }
-        })
-    }
-
-    private fun initializeViewComponents() {
-        news_articles_list.setController(listController)
-        news_articles_swipe_to_refresh.setOnRefreshListener {
-            pageNumber = 1
-            loadArticles()
-        }
-    }
-
-    private fun loadArticles() {
-        paginator.onNext(pageNumber)
     }
 
     private fun observeViewState() {
@@ -118,11 +69,41 @@ class NewsArticlesFragment : BaseFragment() {
             }, {})
     }
 
+    private fun setUpLoadMoreListener() {
+        val layoutManager = LinearLayoutManager(context)
+        news_articles_list.layoutManager = layoutManager
+        news_articles_list.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                viewModel.totalItemCount = layoutManager.itemCount
+                viewModel.lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+                if (viewModel.shouldLoadNextPage()) {
+                    viewModel.loadNextPageOfArticles()
+                }
+            }
+        })
+    }
+
+    private fun initializeViewComponents() {
+        news_articles_list.setController(listController)
+        news_articles_swipe_to_refresh.setOnRefreshListener {
+            viewModel.resetArticles()
+        }
+    }
+
+    private fun loadArticles() {
+        viewModel.loadArticles()
+    }
+
     private fun updateUi(state: NewsArticlesViewState?) {
         when (state) {
-            is NewsArticlesViewState.Loading -> showLoading()
             is NewsArticlesViewState.Success -> {
-                hideLoading()
+                if (state.isLoading) {
+                    showLoading()
+                } else {
+                    hideLoading()
+                }
                 updateList(state.articles)
             }
             is NewsArticlesViewState.Error -> {
@@ -133,32 +114,22 @@ class NewsArticlesFragment : BaseFragment() {
     }
 
     private fun updateList(articles: List<NewsArticle>) {
-        if (pageNumber == 1) {
-            if (articles.isEmpty()) {
-                news_articles_list.visibility = View.INVISIBLE
-                news_articles_empty_state.visibility = View.VISIBLE
-            } else {
-                news_articles_list.visibility = View.VISIBLE
-                news_articles_empty_state.visibility = View.INVISIBLE
-                listController.updateArticles(articles)
-            }
+        if (articles.isEmpty()) {
+            news_articles_list.visibility = View.INVISIBLE
+            news_articles_empty_state.visibility = View.VISIBLE
         } else {
-            listController.addArticles(articles)
+            news_articles_list.visibility = View.VISIBLE
+            news_articles_empty_state.visibility = View.INVISIBLE
+            listController.updateArticles(articles)
         }
     }
 
     private fun showLoading() {
-        loading = true
         news_articles_swipe_to_refresh.isRefreshing = true
     }
 
     private fun hideLoading() {
-        loading = false
         news_articles_swipe_to_refresh.isRefreshing = false
-    }
-
-    companion object {
-        private const val VISIBLE_THRESHOLD = 1
     }
 
 }

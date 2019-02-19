@@ -31,6 +31,11 @@ class NewsSourcesFragment : BaseFragment() {
 
     private val listController = NewsSourcesController()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        observeViewState()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,7 +51,6 @@ class NewsSourcesFragment : BaseFragment() {
         if (savedInstanceState == null) {
             loadSources()
         }
-        observeViewState()
     }
 
     private fun initializeViewComponents() {
