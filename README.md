@@ -1,12 +1,37 @@
-# Hire Me News [WIP]
+# Hire Me News
 
-Hire Me News is a sample project that showcases Android development best practices under a MVVM architecture while also making you informed of the latest news!
+Hire Me News is a sample News reader project that showcases Android development best practices under a MVVM architecture while also making you informed of the latest news!
 
 (If you think this app is cool, hire me! 😀 )
 
 ### Architecture
 
 This project follows the MVVM architecture making use of most of Android Jetpack components and RxJava, to make a clean, easy to understand, and maintainable reactive structure.
+
+##### Layers
+
+In this architecture, the `Fragments` act as the **View layer**, while we use subclasses of the `ViewModel` from Google's architecture components as the **ViewModel layer**.
+
+To deal with data sets, the `Repository` pattern is applied, which controls possible different data sources and maps the entities into domain objects. For now, the only data source is the network. Meaning that we use databases to store the retrieved data. 
+
+Linking everything together is a reactive stream of `Observables` from RxJava. The API returns the events, which get mapped and transformed in the Repository layer, before being subscribed in the ViewModel and relayed to the View in the form of `ViewStates`. The UI renders the ViewStates also in a reactive approach.
+
+```mermaid
+graph TB
+A(Activity/Fragment)-->B(ViewModel)
+B(ViewModel)-->C(Repository)
+C-->D(API)
+```
+
+##### Navigation
+
+There is a single activity in the project, called `InitialActivity`. All the content is delegated to fragments which are configured using the Navigation Library to link between the different screens.
+
+##### Dependency Injection
+
+To keep things testable and maintainable, the project uses Dagger 2 as the dependency injection framework.
+
+This allows the caller to use the callee without having to know how to construct them, separating reposibilities and leaving the code cleaner.
 
 ### Getting Started
 
@@ -31,9 +56,13 @@ Hire Me News uses [ktlint](https://ktlint.github.io/) to enforce Kotlin coding s
 
 - Start Android Studio
 
+### Continuous Integration
+
+This project is continuously build and checked for errors using Bitrise.
+
 ### Screenshots
 
-// TBD
+
 
 ### Libraries
 
@@ -42,11 +71,6 @@ Hire Me News uses [ktlint](https://ktlint.github.io/) to enforce Kotlin coding s
 - AppCompat
 - KTX
 - Multidex
-
-##### Database
-
-- Room
-- SQLBrite
 
 ##### Reactive
 
@@ -84,11 +108,3 @@ Hire Me News uses [ktlint](https://ktlint.github.io/) to enforce Kotlin coding s
 - Timber
 - Leak Canary
 - Chuck
-
-### Continuous Integration
-
-// TBD
-
-### Points to notice
-
-// TBD

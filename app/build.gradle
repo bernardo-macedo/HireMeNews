@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply from: '../dependencies.gradle'
+apply from: '../helpers.gradle'
 
 android {
     compileSdkVersion 28
@@ -13,20 +14,15 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-//        testInstrumentationRunner "io.appflate.restmock.android.RESTMockTestRunner"
         testInstrumentationRunner 'com.github.tmurakami.dexopener.DexOpenerAndroidJUnitRunner'
         multiDexEnabled true
         resValue 'string', "BASE_URL", "\"https://newsapi.org/\""
+        resValue 'string', "NEWS_API_KEY", "\"${getNewsApiKey().trim()}\""
     }
     buildTypes {
-        debug {
-            resValue 'string', "NEWS_API_KEY", "\"825001404fa84e509924f1b213a86bec\""
-        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            // TODO: CREATE THE RELEASE API KEY ON CI SERVER
-            resValue 'string', "NEWS_API_KEY", "\"825001404fa84e509924f1b213a86bec\""
         }
     }
     sourceSets {
