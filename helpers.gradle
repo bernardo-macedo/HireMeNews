@@ -1,0 +1,8 @@
+def getNewsApiKey() {
+    println("Getting NEWS_API_KEY: ${System.getenv("NEWS_API_KEY")}")
+    return System.getenv("NEWS_API_KEY") ?: '825001404fa84e509924f1b213a86bec'
+}
+
+ext {
+    getNewsApiKey = this.&getNewsApiKey
+}
