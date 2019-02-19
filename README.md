@@ -1,6 +1,3 @@
----
-typora-copy-images-to: ipic
----
 
 # Hire Me News
 
@@ -56,6 +53,8 @@ Hire Me News uses [ktlint](https://ktlint.github.io/) to enforce Kotlin coding s
 ### Continuous Integration
 
 This project is continuously build and checked for errors using Bitrise.
+
+[![Build Status](https://app.bitrise.io/app/c68b0c17362018ec/status.svg?token=qphMyIDF5asCYFHOPNGp_A&branch=master)](https://app.bitrise.io/app/c68b0c17362018ec)
 
 ### Screenshots
 
