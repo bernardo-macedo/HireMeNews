@@ -111,7 +111,7 @@ class NewsArticlesViewModel(
         val previousArticles = if (state is NewsArticlesViewState.Success && pageNumber > 1) {
             state.articles
         } else {
-            emptyList()
+            mutableListOf()
         }
         return previousArticles + articles
     }

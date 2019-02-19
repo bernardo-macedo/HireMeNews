@@ -1,11 +1,11 @@
 package com.bmacedo.hiremenews.models.api
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 open class GenericResponse(
-    @SerializedName("status") var status: String = "error",
-    @SerializedName("code") var statusCode: String? = null,
-    @SerializedName("message") var message: String? = null
+    @Json(name = "status") var status: String = "error",
+    @Json(name = "code") var statusCode: String? = null,
+    @Json(name = "message") var message: String? = null
 ) {
 
     fun hasError(): Boolean {

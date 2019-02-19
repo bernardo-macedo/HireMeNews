@@ -1,3 +1,7 @@
+---
+typora-copy-images-to: ipic
+---
+
 # Hire Me News
 
 Hire Me News is a sample News reader project that showcases Android development best practices under a MVVM architecture while also making you informed of the latest news!
@@ -15,13 +19,6 @@ In this architecture, the `Fragments` act as the **View layer**, while we use su
 To deal with data sets, the `Repository` pattern is applied, which controls possible different data sources and maps the entities into domain objects. For now, the only data source is the network. Meaning that we use databases to store the retrieved data. 
 
 Linking everything together is a reactive stream of `Observables` from RxJava. The API returns the events, which get mapped and transformed in the Repository layer, before being subscribed in the ViewModel and relayed to the View in the form of `ViewStates`. The UI renders the ViewStates also in a reactive approach.
-
-```mermaid
-graph TB
-A(Activity/Fragment)-->B(ViewModel)
-B(ViewModel)-->C(Repository)
-C-->D(API)
-```
 
 ##### Navigation
 
@@ -62,7 +59,7 @@ This project is continuously build and checked for errors using Bitrise.
 
 ### Screenshots
 
-
+![photo5140978744557676639](docs/photo5140978744557676639.jpg) ![photo5143521872003049545](docs/photo5143521872003049545.jpg)
 
 ### Libraries
 
